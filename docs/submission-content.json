@@ -1,0 +1,88 @@
+[
+  {
+    "type": "h1",
+    "text": "Executive Summary"
+  },
+  {
+    "type": "body",
+    "text": "I built a role-based leave management system for the HyScaler assignment using React for the frontend, Laravel for the API layer, and PostgreSQL for persistence. The workflow is intentionally simple and interview-friendly: employees submit leave requests, managers review them, and approved requests update leave balances."
+  },
+  {
+    "type": "callout",
+    "text": "Core rule: leave balances change only after manager approval, never when the employee first submits a request."
+  },
+  {
+    "type": "h1",
+    "text": "Stack"
+  },
+  {
+    "type": "table",
+    "headers": ["Layer", "Technology", "Purpose"],
+    "rows": [
+      ["Frontend", "React + Vite + TypeScript", "Login, dashboards, request forms, and manager review UI"],
+      ["Backend", "Laravel API", "Authentication, validation, and workflow logic"],
+      ["Database", "PostgreSQL", "Users, leave requests, and leave balances"]
+    ]
+  },
+  {
+    "type": "h1",
+    "text": "Implementation Highlights"
+  },
+  {
+    "type": "bullet",
+    "text": "The frontend stores a bearer token locally and restores the session on refresh."
+  },
+  {
+    "type": "bullet",
+    "text": "The React UI shows different dashboards for employees and managers based on the user's role."
+  },
+  {
+    "type": "bullet",
+    "text": "The Laravel service layer owns approval logic so controllers stay thin and easy to explain."
+  },
+  {
+    "type": "bullet",
+    "text": "A shared leave-day utility keeps the day-counting rule consistent across the app."
+  },
+  {
+    "type": "h1",
+    "text": "Important Files"
+  },
+  {
+    "type": "table",
+    "headers": ["File", "Why it matters"],
+    "rows": [
+      ["frontend/src/App.tsx", "Bootstraps auth state and routes users into the correct dashboard"],
+      ["frontend/src/pages/EmployeeDashboard.tsx", "Leave application flow and personal request history"],
+      ["frontend/src/pages/ManagerDashboard.tsx", "Queue review and approve/reject actions"],
+      ["server/app/Http/Controllers/AuthController.php", "Login, session hydrate, and logout endpoints"],
+      ["server/app/Http/Controllers/LeaveController.php", "Leave request listing, submission, and review endpoints"],
+      ["server/app/Services/LeaveApprovalService.php", "Approval workflow and balance updates"],
+      ["server/database/migrations/*.php", "PostgreSQL schema for the three core tables"]
+    ]
+  },
+  {
+    "type": "h1",
+    "text": "Verification"
+  },
+  {
+    "type": "bullet",
+    "text": "The shared leave-policy utility was executed locally and its date-range checks passed."
+  },
+  {
+    "type": "bullet",
+    "text": "The Laravel and React source was written to be runnable on a normal machine with Composer and npm installed."
+  },
+  {
+    "type": "bullet",
+    "text": "Seeded demo accounts are included for employee and manager login."
+  },
+  {
+    "type": "h1",
+    "text": "Demo Credentials"
+  },
+  {
+    "type": "body",
+    "text": "Employee: employee@example.com / password. Manager: manager@example.com / password."
+  }
+]
